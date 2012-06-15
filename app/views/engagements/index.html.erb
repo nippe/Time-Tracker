@@ -1,0 +1,23 @@
+<h1>Listing engagements</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @engagements.each do |engagement| %>
+  <tr>
+    <td><%= engagement.name %></td>
+    <td><%= link_to 'Show', engagement %></td>
+    <td><%= link_to 'Edit', edit_engagement_path(engagement) %></td>
+    <td><%= link_to 'Destroy', engagement, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Engagement', new_engagement_path %>
