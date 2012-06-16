@@ -1,4 +1,5 @@
 class Engagement < ActiveRecord::Base
 	belongs_to :client
-  attr_accessible :name
+	has_many :tasks
+  attr_accessible :name, :client_id
 end

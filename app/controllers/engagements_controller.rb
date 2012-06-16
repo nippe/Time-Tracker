@@ -26,6 +26,7 @@ class EngagementsController < ApplicationController
   # GET /engagements/new.json
   def new
     @engagement = Engagement.new
+    @clients = Client.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,6 +37,7 @@ class EngagementsController < ApplicationController
   # GET /engagements/1/edit
   def edit
     @engagement = Engagement.find(params[:id])
+    @clients = Client.all
   end
 
   # POST /engagements

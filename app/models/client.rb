@@ -1,4 +1,5 @@
 class Client < ActiveRecord::Base
-  has_many :engagements
   attr_accessible :name
+
+  has_many :engagements
 end
