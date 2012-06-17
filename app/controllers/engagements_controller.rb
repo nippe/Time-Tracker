@@ -1,14 +1,17 @@
 
 class EngagementsController < ApplicationController
+  respond_to :html, :json
+
   # GET /engagements
   # GET /engagements.json
   def index
-    @engagements = Engagement.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @engagements }
+    if(params[:client_id])
+      @engagements = Engagement.find_all_by_client_id(params[:client_id])
+    else
+      @engagements = Engagement.all
     end
+
+    respond_with(@engagements)
   end
 
   # GET /engagements/1

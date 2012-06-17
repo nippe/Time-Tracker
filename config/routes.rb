@@ -1,9 +1,16 @@
 TimeTracker::Application.routes.draw do
-  resources :tasks
+  resources :clients do
+    resources :engagements
+  end
 
   resources :engagements
+#  resources :engagements do
+#  resources :tasks
+#  end
 
-  resources :clients
+  resources :tasks
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
