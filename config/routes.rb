@@ -1,14 +1,19 @@
 TimeTracker::Application.routes.draw do
+  get "start/index"
+  match 'start' => 'start#index'
+
+  post "start/register"
+
   resources :clients do
     resources :engagements do
       resources :tasks
     end
   end
 
-  resources :engagements
-#  resources :engagements do
-#  resources :tasks
-#  end
+  #resources :engagements
+  resources :engagements do
+    resources :tasks
+  end
 
   resources :tasks
 

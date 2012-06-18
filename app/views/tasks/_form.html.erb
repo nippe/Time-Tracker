@@ -16,6 +16,10 @@
     <%= f.datetime_select :date %>
   </div>
   <div class="field">
+    <%= f.label :engagement_id %>
+    <%= f.collection_select :engagement_id, @engagements, :id, :name %>
+  </div>
+  <div class="field">
     <%= f.label :description %><br />
     <%= f.text_field :description %>
   </div>

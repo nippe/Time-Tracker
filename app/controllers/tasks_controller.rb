@@ -30,6 +30,7 @@ class TasksController < ApplicationController
   # GET /tasks/new.json
   def new
     @task = Task.new
+    @engagements = Engagement.all
 
     respond_to do |format|
       format.html # new.html.erb
