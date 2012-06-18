@@ -3,7 +3,11 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+    if( params[:engagement_id])
+      @tasks = Task.find_all_by_engagement_id(params[:engagement_id])
+    else
+      @tasks = Task.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,6 +1,8 @@
 TimeTracker::Application.routes.draw do
   resources :clients do
-    resources :engagements
+    resources :engagements do
+      resources :tasks
+    end
   end
 
   resources :engagements
