@@ -1,3 +1,4 @@
+
 <h1>Start#index</h1>
 
 
@@ -9,8 +10,10 @@
   </div>
 
   <div id="container-entry">
+    <%= select "client", "id", @clients.map{|c| [c.name, c.id]}   %>
 
-
+    <select data-placeholder="Välj uppdrag..." id="engagement_id">
+    </select>
 
   </div>
 
@@ -21,3 +24,8 @@
 
 
 <p>Find me in app/views/start/index.html.erb</p>
+
+<script type="text/javascript" language="javascript">
+    $('#client_id').chosen();
+    $('#engagement_id').chosen();
+</script>
