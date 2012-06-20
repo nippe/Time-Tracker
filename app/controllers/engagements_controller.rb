@@ -1,11 +1,10 @@
-
 class EngagementsController < ApplicationController
   respond_to :html, :json
 
   # GET /engagements
   # GET /engagements.json
   def index
-    if(params[:client_id])
+    if (params[:client_id])
       @engagements = Engagement.find_all_by_client_id(params[:client_id])
     else
       @engagements = Engagement.all
@@ -18,11 +17,6 @@ class EngagementsController < ApplicationController
   # GET /engagements/1.json
   def show
     @engagement = Engagement.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @engagement }
-    end
   end
 
   # GET /engagements/new
