@@ -1,5 +1,4 @@
-json.id @engagement.id
-json.name @engagement.name
+json.(@engagement, :id, :name)
 
 json.client do |json|
     json.id @engagement.client.id

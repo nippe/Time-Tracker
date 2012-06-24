@@ -3,37 +3,30 @@
     $(document).ready(
             function () {
                 $('select#client_id').change(
-                        function () {
+                        function(){
                             var id_client_id_value_string = $(this).val();
-
+                            $.ajax({
+                                dataType: 'json',
+                                cache: false,
+                                url: '/engagements.json',
+                                timeout: 2000,
+                                error: function(XMLHttpRequest, errorTextStatus, error){
+                                    alert('error');
+                                },
+                                success: function(data){
+                                    var row = "<option value=\"" + "" + "\">" + "" + "</option>";
+                                    $(row).appendTo('select#engagement_id');
+                                    $.each(data.engagements, function(i, engagement){
+                                        row = "<option value=\"" + engagement.id + "\">" + engagement.name + "</option>";
+                                        $(row).appendTo('select#engagement_id');
+                                    });
+                                    $('select#engagement_id').trigger('liszt:updated');
+                                }
+                            });
                         }
                 );
             }
     );
-
-
-    //    $.ajax({
-    //                    dataType: "json",
-    //                    cache: false,
-    //                    url: '/engagements/' + id_value_string,
-    //                    timeout: 2000,
-    //                    error: function(XMLHttpRequest, errorTextStatus, error){
-    //                        alert("Failed to submit : "+ errorTextStatus+" ;"+error);
-    //                    },
-    //                    success: function(data){
-    //                        // Clear all options from sub category select
-    //                        $("select#gallery_sub_section_id option").remove();
-    //                        //put in a empty default line
-    //                        var row = "<option value=\"" + "" + "\">" + "" + "</option>";
-    //                        $(row).appendTo("select#gallery_sub_section_id");
-    //                        // Fill sub category select
-    //                        $.each(data, function(i, j){
-    //                            row = "<option value=\"" + j.sub_section.id + "\">" + j.sub_section.name + "</option>";
-    //                            $(row).appendTo("select#gallery_sub_section_id");
-    //                        });
-    //                     }
-    //                });
-
 
 </script>
 <h1>Start#index</h1>
