@@ -1,14 +1,17 @@
 
 class ActivitiesController < ApplicationController
+  respond_to :html, :json
+
   # GET /activities
   # GET /activities.json
   def index
-    @activities = Activity.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @activities }
+    if params[:engagement_id].nil?
+      @activities = Activity.all
+    else
+      @activities = Activity.find_all_by_engagement_id(params[:engagement_id])
     end
+
+    respond_with(@activities)
   end
 
   # GET /activities/1

@@ -8,16 +8,16 @@ TimeTracker::Application.routes.draw do
 
   resources :clients do
     resources :engagements do
-      resources :tasks
+      resources :activities
     end
   end
 
   #resources :engagements
   resources :engagements do
-    resources :tasks
+    resources :activities
   end
 
-  resources :tasks
+  resources :activities
 
 
 
