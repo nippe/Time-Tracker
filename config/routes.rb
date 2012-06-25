@@ -1,4 +1,6 @@
 TimeTracker::Application.routes.draw do
+  resources :activities
+
   get "start/index"
   match 'start' => 'start#index'
 
