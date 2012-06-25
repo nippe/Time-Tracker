@@ -62,9 +62,11 @@
 
   <div id="container-entry">
     <%= select "client", "id", @clients.map { |c| [c.name, c.id] } %>
-
-    <select data-placeholder="Välj uppdrag..." id="engagement_id" style="width: 250px;"></select>
-
+    <br />
+    <div style="padding-top: 15px;">
+      <select data-placeholder="Välj uppdrag..." id="engagement_id" style="width: 250px; "></select>
+    </div>
+    <br />
     <select data-placeholder="Välj aktivitet..." id="task_id" style="width: 250px;"></select>
 
   </div>
