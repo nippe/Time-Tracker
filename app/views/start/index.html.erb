@@ -1,33 +1,53 @@
 <script type="text/javascript" language="javascript">
 
+    function fetch_data_for_dropdown(dataUrl, dropdown_id) {
+        $.ajax({
+            dataType:'json',
+            cache:false,
+            url: dataUrl,
+            timeout:2000,
+            error:function (XMLHttpRequest, errorTextStatus, error) {
+                alert('error');
+            },
+            success:function (data) {
+                $('select#' + dropdown_id + ' option').remove();
+                var row = "<option value=\"" + "" + "\">" + "" + "</option>";
+                $(row).appendTo('select#' + dropdown_id);
+                $.each(data.engagements, function (i, entity) {
+                    row = "<option value=\"" + entity.id + "\">" + entity.name + "</option>";
+                    $(row).appendTo('select#' + dropdown_id);
+                });
+                $('select#' + dropdown_id).trigger('liszt:updated');
+            }
+        });
+    }
+
+
     $(document).ready(
             function () {
                 $('select#client_id').change(
                         function(){
                             var id_client_id_value_string = $(this).val();
-                            $.ajax({
-                                dataType: 'json',
-                                cache: false,
-                                url: '/clients/' + id_client_id_value_string + '/engagements.json',
-                                timeout: 2000,
-                                error: function(XMLHttpRequest, errorTextStatus, error){
-                                    alert('error');
-                                },
-                                success: function(data){
-                                    $('select#engagement_id option').remove();
-                                    var row = "<option value=\"" + "" + "\">" + "" + "</option>";
-                                    $(row).appendTo('select#engagement_id');
-                                    $.each(data.engagements, function(i, engagement){
-                                        row = "<option value=\"" + engagement.id + "\">" + engagement.name + "</option>";
-                                        $(row).appendTo('select#engagement_id');
-                                    });
-                                    $('select#engagement_id').trigger('liszt:updated');
-                                }
-                            });
+                            fetch_data_for_dropdown('/clients/' + id_client_id_value_string + '/engagements.json', 'engagement_id');
                         }
                 );
             }
     );
+
+    $(document).ready(
+            function(){
+                var task_droplist_id = 'task_id';
+
+                $('select#engagement_id').change(
+                        function(){
+                            var engagement_id_value_string = $(this).val();
+                            fetch_data_for_dropdown('/engagement/' + engagement_id_value_string + '/tasks.json', task_droplist_id);
+                        }
+                );
+            }
+    );
+
+
 
 </script>
 <h1>Start#index</h1>
@@ -58,6 +78,7 @@
 <p>Find me in app/views/start/index.html.erb</p>
 
 <script type="text/javascript" language="javascript">
+    $('#client_id').width(250);
     $('#client_id').chosen();
     $('#engagement_id').chosen();
     $('#task_id').chosen();
