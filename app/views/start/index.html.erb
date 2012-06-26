@@ -1,6 +1,6 @@
 <script type="text/javascript" language="javascript">
 
-    function fetch_data_for_dropdown(dataUrl, dropdown_id) {
+    function fetch_data_for_dropdown(dataUrl, dropdown_id, root_node_name) {
         $.ajax({
             dataType:'json',
             cache:false,
@@ -13,7 +13,7 @@
                 $('select#' + dropdown_id + ' option').remove();
                 var row = "<option value=\"" + "" + "\">" + "" + "</option>";
                 $(row).appendTo('select#' + dropdown_id);
-                $.each(data.engagements, function (i, entity) {
+                $.each(data[root_node_name], function (i, entity) {
                     row = "<option value=\"" + entity.id + "\">" + entity.name + "</option>";
                     $(row).appendTo('select#' + dropdown_id);
                 });
@@ -28,7 +28,7 @@
                 $('select#client_id').change(
                         function(){
                             var id_client_id_value_string = $(this).val();
-                            fetch_data_for_dropdown('/clients/' + id_client_id_value_string + '/engagements.json', 'engagement_id');
+                            fetch_data_for_dropdown('/clients/' + id_client_id_value_string + '/engagements.json', 'engagement_id', 'engagements');
                         }
                 );
             }
@@ -36,12 +36,12 @@
 
     $(document).ready(
             function(){
-                var task_droplist_id = 'task_id';
+                var task_droplist_id = 'activity_id';
 
                 $('select#engagement_id').change(
                         function(){
                             var engagement_id_value_string = $(this).val();
-                            fetch_data_for_dropdown('/engagement/' + engagement_id_value_string + '/tasks.json', task_droplist_id);
+                            fetch_data_for_dropdown('/engagements/' + engagement_id_value_string + '/activities.json', task_droplist_id, 'activities');
                         }
                 );
             }
@@ -67,7 +67,7 @@
       <select data-placeholder="Välj uppdrag..." id="engagement_id" style="width: 250px; "></select>
     </div>
     <br />
-    <select data-placeholder="Välj aktivitet..." id="task_id" style="width: 250px;"></select>
+    <select data-placeholder="Välj aktivitet..." id="activity_id" style="width: 250px;"></select>
 
   </div>
 
@@ -83,5 +83,5 @@
     $('#client_id').width(250);
     $('#client_id').chosen();
     $('#engagement_id').chosen();
-    $('#task_id').chosen();
+    $('#activity_id').chosen();
 </script>
