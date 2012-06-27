@@ -4,7 +4,7 @@
         $.ajax({
             dataType:'json',
             cache:false,
-            url: dataUrl,
+            url:dataUrl,
             timeout:2000,
             error:function (XMLHttpRequest, errorTextStatus, error) {
                 alert('error');
@@ -26,7 +26,7 @@
     $(document).ready(
             function () {
                 $('select#client_id').change(
-                        function(){
+                        function () {
                             var id_client_id_value_string = $(this).val();
                             fetch_data_for_dropdown('/clients/' + id_client_id_value_string + '/engagements.json', 'engagement_id', 'engagements');
                         }
@@ -35,11 +35,11 @@
     );
 
     $(document).ready(
-            function(){
+            function () {
                 var task_droplist_id = 'activity_id';
 
                 $('select#engagement_id').change(
-                        function(){
+                        function () {
                             var engagement_id_value_string = $(this).val();
                             fetch_data_for_dropdown('/engagements/' + engagement_id_value_string + '/activities.json', task_droplist_id, 'activities');
                         }
@@ -48,8 +48,20 @@
     );
 
 
-
 </script>
+
+<style type="text/css">
+    .rounded-corners {
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -khtml-border-radius: 5px;
+        border-radius: 5px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #CFCFCF;
+    }
+
+</style>
 <h1>Start#index</h1>
 
 
@@ -62,13 +74,26 @@
 
   <div id="container-entry">
     <%= select "client", "id", @clients.map { |c| [c.name, c.id] } %>
-    <br />
+    <br/>
+
     <div style="padding-top: 15px;">
       <select data-placeholder="Välj uppdrag..." id="engagement_id" style="width: 250px; "></select>
     </div>
-    <br />
+    <br/>
     <select data-placeholder="Välj aktivitet..." id="activity_id" style="width: 250px;"></select>
 
+  </div>
+
+  <div id="entry-container" style="margin-left: 300px; float: left; margin-top: -108px; ">
+    <div id="time-entry-container">
+      <input id="time_spent" type="text" style="width: 50px;" class="rounded-corners"/>
+    </div>
+    <div style="float: left; margin-left: 200px; margin-top: -23px;">
+      <input type="checkbox" checked="true" id="util"  /> Util
+    </div>
+    <div id="textarea-container" style="padding-top: 15px;">
+      <input id="description" type="textarea" style="width: 250px; height: 50px; vertical-align: top;" class="rounded-corners"/>
+    </div>
   </div>
 
 
