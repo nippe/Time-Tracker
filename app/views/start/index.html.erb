@@ -22,6 +22,9 @@
         });
     }
 
+    function create_new_entry() {
+        alert('dsfsd');
+    }
 
     $(document).ready(
             function () {
@@ -47,6 +50,12 @@
             }
     );
 
+    $(document).ready(
+        function(){
+            $(' #button-create-entry').click(create_new_entry);
+        }
+    );
+
 
 </script>
 
@@ -64,9 +73,9 @@
 </style>
 <h1>Start#index</h1>
 
-
 <div id="container-main">
 
+    <%= render_navigation %>
   <div id="container-weekview">
 
 
@@ -95,7 +104,7 @@
       <input id="description" type="textarea" style="width: 250px; height: 40px; vertical-align: top;" class="rounded-corners"/>
     </div>
     <div id="create-entry-containder" align="right" style="padding-top: 9px;">
-      <input type="button" value="Create Entry" />
+      <input id="button-create-entry" type="button" value="Create Entry" />
     </div>
   </div>
 
@@ -105,11 +114,7 @@
 
 
 <div style="padding-top: 100px;">
-<ul>
-  <li><%= link_to 'Clients', clients_path   %></li>
-  <li><%= link_to 'Engagements', engagements_path %></li>
-  <li><%= link_to 'Activities', activities_path %></li>
-</ul>
+
 </div>
 <script type="text/javascript" language="javascript">
     $('#client_id').prepend("<option value=\"" + "" + "\">" + "" + "</option>").attr("data-placeholder", "Välj kund...");

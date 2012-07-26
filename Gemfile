@@ -24,6 +24,7 @@ gem 'jquery-rails'
 gem 'jbuilder'
 
 
+gem 'simple-navigation'
 gem 'api_taster', :group => :development
 
 # To use ActiveModel has_secure_password
