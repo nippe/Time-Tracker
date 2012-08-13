@@ -4,8 +4,9 @@ class CreateTasks < ActiveRecord::Migration
       t.datetime :date
       t.string :description
       t.decimal :time_spent
-      t.decimal :time_estimate
+      t.decimal :time_estimated
       t.text :comment
+      t.boolean :util
       t.integer :engagement_id, :null => false, :references => :engagements
 
       t.timestamps

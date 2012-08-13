@@ -1,0 +1,3 @@
+
+class TimeEntryController < ApplicationController
+end

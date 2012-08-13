@@ -27,6 +27,13 @@ gem 'jbuilder'
 gem 'simple-navigation'
 gem 'api_taster', :group => :development
 
+
+group :production do
+  gem 'heroku'
+  gem 'thin'
+  gem 'pg'
+end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
