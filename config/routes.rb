@@ -21,6 +21,9 @@ TimeTracker::Application.routes.draw do
 
   root :to => "start#index"
 
+  post 'time_entry/create'
+
+
   mount ApiTaster::Engine => '/api_taster' if Rails.env.development?
 
   if Rails.env.development?
@@ -86,7 +89,7 @@ TimeTracker::Application.routes.draw do
         delete '/activities/:id', {}
 
 
-
+      post '/time_entry/create', {}
     end
   end
 
