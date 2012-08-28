@@ -80,13 +80,13 @@ TimeTracker::Application.routes.draw do
       delete '/activities/:id', {}
       get '/clients', {}
 
-        get '/activities', {}
-        post '/activities', {}
-        get '/activities/new', {}
-        get '/activities/:id/edit', {}
-        get '/activities/:id', {}
-        put '/activities/:id', {}
-        delete '/activities/:id', {}
+      get '/activities', {}
+      post '/activities', {}
+      get '/activities/new', {}
+      get '/activities/:id/edit', {}
+      get '/activities/:id', {}
+      put '/activities/:id', {}
+      delete '/activities/:id', {}
 
 
       post '/time_entry/create', {}

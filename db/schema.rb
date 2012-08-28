@@ -11,6 +11,43 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20120814124738) do
+
+  create_table "activities", :force => true do |t|
+    t.string   "name"
+    t.boolean  "util"
+    t.decimal  "hourly_rate"
+    t.text     "description"
+    t.integer  "engagement_id", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "clients", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "engagements", :force => true do |t|
+    t.string   "name"
+    t.integer  "rate",       :default => 1100
+    t.integer  "client_id",                    :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
+  create_table "time_entries", :force => true do |t|
+    t.datetime "activity_date"
+    t.string   "description"
+    t.decimal  "time_spent"
+    t.decimal  "time_estimated"
+    t.boolean  "util"
+    t.integer  "client_id",      :null => false
+    t.integer  "engagement_id",  :null => false
+    t.integer  "activity_id",    :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
 end

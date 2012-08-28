@@ -23,17 +23,28 @@
     }
 
     function create_new_entry() {
+        var postData = 'time_entry[client_id]=' + $('#client_id').val()
+                + '&time_entry[engagement_id]=' + $('select#engagement_id').val()
+                + '&time_entry[activity_date]=' + $('input#activity_date').val()
+                + '&time_entry[activity_id]='   + $('#activity_id').val()
+                + '&time_entry[util]='          + $('#util').val()
+                + '&time_entry[time_spent]='    + $('#time_spent').val()
+                + '&time_entry[description]='   + $('#description').val();
+
+        alert(postData);
+
         $.ajax({
                     type: 'POST',
                     dataType:'json',
                     cache:false,
                     url:'/time_entry/create',
                     timeout:2000,
+                    data: postData,
                     error:function (XMLHttpRequest, errorTextStatus, error) {
                         alert('error:\n' + errorTextStatus);
                     },
                     success:function (data) {
-                       alert(data);
+                       alert(data.time_entry.description);
                     }
                 });
     }
@@ -64,7 +75,7 @@
 
     $(document).ready(
         function(){
-            $(' #button-create-entry').click(create_new_entry);
+            $('#button-create-entry').click(create_new_entry);
         }
     );
 
@@ -98,26 +109,26 @@
     <br/>
 
     <div style="padding-top: 15px;">
-      <select data-placeholder="Välj uppdrag..." id="engagement_id" style="width: 250px; "></select>
+      <select data-placeholder="Välj uppdrag..." id="engagement_id" style="width: 250px; " tabindex="2"></select>
     </div>
     <br/>
-    <select data-placeholder="Välj aktivitet..." id="activity_id" style="width: 250px;"></select>
+    <select data-placeholder="Välj aktivitet..." id="activity_id" style="width: 250px;" tabindex="3"></select>
 
   </div>
 
   <div id="entry-container" style="margin-left: 300px; float: left; margin-top: -108px; ">
     <div id="time-entry-container">
-      <input id="date" type="text" style="width: 125px" class="rounded-corners" data-placeholder="Aktivitetsdatum"/>
-      <input id="time_spent" type="text" style="width: 50px;" class="rounded-corners"/>
+      <input id="activity_date" type="text" style="width: 125px" class="rounded-corners" data-placeholder="Aktivitetsdatum" tabindex="4"/>
+      <input id="time_spent" type="text" style="width: 50px;" class="rounded-corners" tabindex="5"/>
     </div>
     <div style="float: left; margin-left: 200px; margin-top: -21px;">
-      <input type="checkbox" checked="true" id="util"  /> Util
+      <input type="checkbox" checked="true" id="util" tabindex="6" /> Util
     </div>
     <div id="textarea-container" style="padding-top: 9px;">
-      <input id="description" type="textarea" style="width: 250px; height: 40px; vertical-align: top;" class="rounded-corners"/>
+      <input id="description" type="textarea" style="width: 250px; height: 40px; vertical-align: top;" class="rounded-corners" tabindex="7"/>
     </div>
-    <div id="create-entry-containder" align="right" style="padding-top: 9px;">
-      <input id="button-create-entry" type="button" value="Create Entry" />
+    <div id="create-entry-container" align="right" style="padding-top: 9px;">
+      <input id="button-create-entry" type="button" value="Create Entry" tabindex="8"/>
     </div>
   </div>
 
@@ -130,6 +141,7 @@
 
 </div>
 <script type="text/javascript" language="javascript">
+    $('#client_id').attr('tabindex', '1');
     $('#client_id').prepend("<option value=\"" + "" + "\">" + "" + "</option>").attr("data-placeholder", "Välj kund...");
     $('#client_id').width(250);
     $('#client_id').chosen();
