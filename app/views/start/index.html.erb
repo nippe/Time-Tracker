@@ -23,6 +23,8 @@
     }
 
     function create_new_entry() {
+        $('#container-main').mask('loading');
+
         var postData = 'time_entry[client_id]=' + $('#client_id').val()
                 + '&time_entry[engagement_id]=' + $('select#engagement_id').val()
                 + '&time_entry[activity_date]=' + $('input#activity_date').val()
@@ -30,8 +32,6 @@
                 + '&time_entry[util]='          + $('#util').val()
                 + '&time_entry[time_spent]='    + $('#time_spent').val()
                 + '&time_entry[description]='   + $('#description').val();
-
-        alert(postData);
 
         $.ajax({
                     type: 'POST',
@@ -47,6 +47,9 @@
                        alert(data.time_entry.description);
                     }
                 });
+
+        $('#container-main').unmask();
+
     }
 
     $(document).ready(
@@ -97,11 +100,8 @@
 <h1>Start#index</h1>
 
 <div id="container-main">
-
-
   <div id="container-weekview">
-
-
+    [Weekview]
   </div>
 
   <div id="container-entry">
@@ -131,15 +131,9 @@
       <input id="button-create-entry" type="button" value="Create Entry" tabindex="8"/>
     </div>
   </div>
-
-
 </div>
 
 
-
-<div style="padding-top: 100px;">
-
-</div>
 <script type="text/javascript" language="javascript">
     $('#client_id').attr('tabindex', '1');
     $('#client_id').prepend("<option value=\"" + "" + "\">" + "" + "</option>").attr("data-placeholder", "Välj kund...");
