@@ -34,4 +34,9 @@ TimeTracker::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  unless Rails.env.production?
+    ENV['loginname'] = 'nippe'
+    ENV['passowrd'] = 'qwerty'
+  end
 end

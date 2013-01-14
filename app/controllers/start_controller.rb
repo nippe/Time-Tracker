@@ -4,13 +4,11 @@ class StartController < ApplicationController
 
   def index
     @clients = Client.all
-
-
-
-
-
   end
 
   def register
   end
+
+
+
 end

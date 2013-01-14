@@ -1,5 +1,8 @@
 <script type="text/javascript" language="javascript">
 
+  var current_week_no = <%= Date.today.cweek %>;
+
+
     function fetch_data_for_dropdown(dataUrl, dropdown_id, root_node_name) {
         $.ajax({
             dataType:'json',
@@ -44,13 +47,14 @@
                         alert('error:\n' + errorTextStatus);
                     },
                     success:function (data) {
-                       alert(data.time_entry.description);
+                       //alert(data.time_entry.description);
+                        //TODO: Write to div - status
                     }
                 });
 
         $('#container-main').unmask();
-
     }
+
 
     $(document).ready(
             function () {
@@ -82,6 +86,19 @@
         }
     );
 
+  $().ready(
+          function(){
+              $('#weekview_refresh_link').click(
+                      function(){
+                          var url = '/time_entries/week/' + current_week_no + '.json';
+                          alert(url);
+                      }
+              );
+          }
+  );
+
+
+
 
 </script>
 
@@ -100,6 +117,7 @@
 <h1>Start#index</h1>
 
 <div id="container-main">
+  <a href="" id="weekview_refresh_link">Refresh week view</a>
   <div id="container-weekview">
     [Weekview]
   </div>

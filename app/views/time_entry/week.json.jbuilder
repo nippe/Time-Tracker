@@ -1,0 +1,1 @@
+json.time_entries @@time_entries_for_week

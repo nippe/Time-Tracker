@@ -22,6 +22,7 @@ TimeTracker::Application.routes.draw do
   root :to => "start#index"
 
   post 'time_entry/create'
+  get 'time_entries/week/:week_number' => 'time_entry#week'
 
 
   mount ApiTaster::Engine => '/api_taster' if Rails.env.development?
